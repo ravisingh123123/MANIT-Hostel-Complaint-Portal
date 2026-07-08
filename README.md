@@ -11,6 +11,29 @@ A web-based complaint management system developed for MANIT hostels, enabling st
 
 This portal provides distinct functionalities for both students and administrators to ensure a seamless complaint resolution process.
 
+
+## 📸 Screenshots
+
+### Student Dashboard
+
+![Student Dashboard](screenshots/1.png)
+
+### Add Complaint
+
+![Add Complaint](screenshots/2.png)
+
+### My Complaints
+
+![My Complaints](screenshots/3.png)
+
+### Admin Login
+
+![Admin Login](screenshots/4.png)
+
+### Admin Dashboard
+
+![Admin Dashboard](screenshots/5.png)
+
 ### Upcoming Features 🚀
 
 * 📊 Complaint Analytics Dashboard
