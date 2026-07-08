@@ -14,25 +14,29 @@ This portal provides distinct functionalities for both students and administrato
 
 ## 📸 Screenshots
 
-### Student Dashboard
+### Manit Hostel complaint portal
 
-![Student Dashboard](screenshots/1.png)
+![Manit Hostel complaint portal](screenshots/1.png)
 
-### Add Complaint
+### Create Account
 
-![Add Complaint](screenshots/2.png)
-
-### My Complaints
-
-![My Complaints](screenshots/3.png)
+![Create Account](screenshots/2.png)
 
 ### Admin Login
 
-![Admin Login](screenshots/4.png)
+![Admin Login](screenshots/3.png)
 
 ### Admin Dashboard
 
-![Admin Dashboard](screenshots/5.png)
+![Admin Dashboard](screenshots/4.png)
+
+### Student Dashboard
+
+![Student Dashboard](screenshots/5.png)
+
+### Add complaint
+
+![Add complaint](screenshots/6.png)
 
 ### Upcoming Features 🚀
 
