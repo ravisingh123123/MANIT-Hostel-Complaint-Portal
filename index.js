@@ -25,25 +25,25 @@ app.use("/complaint", authMiddleware, complainRouter);
 app.use("/admin", adminRouter);
 
 app.get("/", (req, res) => {
-    res.redirect("/user");
+  res.redirect("/user");
 });
 
 // Express 5 fallback
 app.use((req, res) => {
-    res.redirect("/user");
+  res.redirect("/user");
 });
 
 const PORT = process.env.PORT || 1080;
 
 (async () => {
-    try {
-        await connectDB();
+  try {
+    await connectDB();
 
-        app.listen(PORT, () => {
-            console.log(`🚀 Hostel Complaint Server running on http://localhost:${PORT}`);
-        });
-    } catch (err) {
-        console.error("❌ Failed to start server");
-        console.error(err);
-    }
+    app.listen(PORT, "0.0.0.0", () => {
+      console.log(`🚀 Hostel Complaint Server running on port ${PORT}`);
+    });
+  } catch (err) {
+    console.error("❌ Failed to start server");
+    console.error(err);
+  }
 })();
