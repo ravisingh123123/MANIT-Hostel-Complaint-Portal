@@ -45,7 +45,6 @@ This portal provides distinct functionalities for both students and administrato
 * ⚡ Priority-Based Complaint Management
 * 📧 Email Notifications
 * 🔍 Advanced Complaint Search & Filtering
-* 📱 Responsive Mobile-Friendly Interface
 
 
 ### For Students 🧑‍🎓
@@ -133,10 +132,10 @@ Make sure you have the following installed on your local machine:
    Create a `.env` file in the root directory and add the necessary environment variables.
 
    ```env
-   MONGO_URI=your_mongodb_connection_string
-   PORT=1080
-   JWT_SECRET=a_strong_and_long_random_secret_string
-   JWT_EXPIRESIN=1d
+MONGODB_URI=your_mongodb_connection_string
+PORT=1080
+JWT_SECRET=a_strong_and_long_random_secret_string
+JWT_EXPIRES_IN=1d
    ```
 
 5. **Start the server**
@@ -156,21 +155,23 @@ Make sure you have the following installed on your local machine:
 
 ## ⚙️ Architecture & Deployment
 
-- MongoDB used as the primary database with **Mongoose ORM**.
+- MongoDB used as the primary database with **Mongoose ODM**.
 - Modular route and controller structure for maintainability.
 
 ---
-## 👥 Contributors
+## 👨‍💻 Development
 
-This project was brought to life by the efforts of:
+Adapted and extended for MANIT hostel complaint management by **Ravi Prakash**.
 
-**Ravi Prakash** - Full Stack Development (Frontend, Backend, Database & Deployment)
-
----
+Key development work includes MongoDB Atlas integration, JWT authentication,
+student and admin workflows, complaint management, Express 5 compatibility,
+frontend rendering fixes, responsive UI improvements, and cloud deployment.
 
 ## 📄 License
 
-This project is licensed under the GNU General Public Licence 3.0 - see the `LICENSE` file for details.
+This project is distributed under the GNU General Public License v3.0.
+See the `LICENSE` file for complete license terms.
+
 ---
 ## 👨‍💻 Author
 
