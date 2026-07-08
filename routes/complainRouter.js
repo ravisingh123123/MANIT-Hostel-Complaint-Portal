@@ -37,12 +37,21 @@ router.get("/add", (req, res) => {
 });
 
 router.get("/myComplaints", async (req, res) => {
-  const user = req.user;
-  const complaints = await Complaint.find({ user: user.id });
+  console.log("=========== MY COMPLAINTS ===========");
+  console.log("JWT User:", req.user);
+
+  const complaints = await Complaint.find({ user: req.user.id });
+
+  console.log("Complaints Found:", complaints);
+
   const filter = {
     user: req.user.id,
   };
+
   const data = await renderHomePage(req, res, {}, filter);
+
+  console.log("Data passed to EJS:", data);
+
   res.render("myComplaints", data);
 });
 

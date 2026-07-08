@@ -1,23 +1,29 @@
 const jwt = require("jsonwebtoken");
-require("dotenv").config({ path: "./.env.local" });
+require("dotenv").config();
 
 const SECRET = process.env.JWT_SECRET;
 
-function authMiddleare(req, res, next) {
+function authMiddleareAdmin(req, res, next) {
   const token = req.cookies.token;
+
   if (!token) {
     return res.redirect("/admin/login");
   }
+
   try {
     const decoded = jwt.verify(token, SECRET);
-    req.user = decoded;
-    if (req.user.type !== "admin") {
+
+    // Ensure only admins can access admin routes
+    if (decoded.type !== "admin") {
       return res.redirect("/admin/login");
     }
+
+    req.user = decoded;
     next();
   } catch (err) {
-    console.log("Token verification failed ", err);
-    return res.redirect("/user/login");
+    console.error("Admin token verification failed:", err);
+    return res.redirect("/admin/login");
   }
 }
-module.exports = authMiddleare;
+
+module.exports = authMiddleareAdmin;

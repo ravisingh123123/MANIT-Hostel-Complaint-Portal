@@ -80,8 +80,8 @@
 
 
 
-        const user = <% -JSON.stringify(user) %>;
-        const complaints = <% -JSON.stringify(complaints) %>;
+const user = <%- JSON.stringify(user || {}) %>;
+const complaints = <%- JSON.stringify(complaints || []) %>;
 
         const recentComplaints = document.getElementById("recentComplaints");
 
@@ -240,12 +240,11 @@
         });
 
         // 4️⃣ Initial render
-        renderComplaints();
-
-        <footer class="text-center text-gray-500 py-4">
-            Developed by Ravi Prakash | MANIT Bhopal
-        </footer>
+renderComplaints();
     </script>
+    <footer class="text-center text-gray-500 py-4">
+    Developed by Ravi Prakash | MANIT Bhopal
+</footer>
     <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
 </body>
 

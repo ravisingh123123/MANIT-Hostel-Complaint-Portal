@@ -62,9 +62,14 @@
 
 
   <script>
+    // alert("JS Loaded");
     // Assume these come from your backend templating engine
-    const user = <% - JSON.stringify(user) %>;
-    const complaints = <% - JSON.stringify(complaints) %>;
+    const user = <%- JSON.stringify(user || {}) %>;
+const complaints = <%- JSON.stringify(complaints || []) %>;
+
+// console.log(user);
+// console.log(complaints);
+    // console.log("Complaints from EJS:", complaints);
     function formatCreatedAtToIST_Long(isoDate) {
       const formatted = new Date(isoDate).toLocaleDateString('en-IN', {
         timeZone: 'Asia/Kolkata',
@@ -80,6 +85,10 @@
 
     const myComplaintsDiv = document.getElementById("myComplaints");
     const complaintFormDiv = document.getElementById("complaintForm");
+
+if (complaintFormDiv) {
+    complaintFormDiv.classList.add("hidden");
+}
 
     // Helper: Returns SVG icon HTML for complaint category
     function getCategoryIcon(category) {
@@ -273,17 +282,27 @@
 
     // Show/hide sections utility
     function showSection(section) {
-      if (section === 'recent') {
-        // Redirect for recent complaints
-        window.location.href = '/user/home';
-      } else if (section === 'my') {
-        myComplaintsDiv.classList.remove('hidden');
-        complaintFormDiv.classList.add('hidden');
-      } else if (section === 'add') {
-        window.location.href = '/complaint/add';
-      }
-      setActiveButton(section);
+  if (section === "recent") {
+    window.location.href = "/user/home";
+    return;
+  }
+
+  if (section === "my") {
+    myComplaintsDiv.classList.remove("hidden");
+
+    // complaintForm doesn't exist on this page
+    if (complaintFormDiv) {
+      complaintFormDiv.classList.add("hidden");
     }
+  }
+
+  if (section === "add") {
+    window.location.href = "/complaint/add";
+    return;
+  }
+
+  setActiveButton(section);
+}
 
     // Set active button style
     function setActiveButton(activeSection) {

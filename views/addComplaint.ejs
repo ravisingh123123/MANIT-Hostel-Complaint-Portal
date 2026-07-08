@@ -81,12 +81,29 @@
     const complaintSelect = document.getElementById('complaintSelect');
 
     // Show/hide sections utility
+    function setActiveButton(activeSection) {
+    const map = {
+        recent: recentBtn,
+        my: myBtn,
+        add: addBtn
+    };
+
+    [recentBtn, myBtn, addBtn].forEach(btn => {
+        btn.classList.remove("bg-blue-600", "text-white");
+        btn.classList.add("bg-white", "text-blue-600");
+    });
+
+    if (map[activeSection]) {
+        map[activeSection].classList.add("bg-blue-600", "text-white");
+        map[activeSection].classList.remove("bg-white", "text-blue-600");
+    }
+}
     function showSection(section) {
       if (section === 'recent') {
         // Redirect for recent complaints
         window.location.href = '/user/home';
       } else if (section === 'my') {
-        window.location.href = '/complaint/mycomplaints';
+        window.location.href = '/complaint/myComplaints';
       } else if (section === 'add') {
         window.location.href = '/complaint/add';
       }

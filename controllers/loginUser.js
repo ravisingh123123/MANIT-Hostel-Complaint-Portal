@@ -1,23 +1,29 @@
 const jwt = require("jsonwebtoken");
 const User = require("../models/User");
 const bcrypt = require("bcrypt");
-require("dotenv").config({ path: "./.env.local" });
+require("dotenv").config();
 
-const saltRounds = 10;
 const SECRET = process.env.JWT_SECRET;
 const EXPIRES_IN = process.env.JWT_EXPIRES_IN;
 
 const loginUser = async (data) => {
   const scholarNo = data.scholarNumber;
   const password = data.password;
+
   const user = await User.findOne({ scholar_no: scholarNo });
+
   if (!user) {
-    throw new Error("User does not exists");
+    throw new Error("User does not exist");
   }
+
   const valid = await bcrypt.compare(password, user.password);
+
   if (!valid) {
     throw new Error("Scholar number or password is incorrect");
   }
+console.log("SECRET =", SECRET);
+console.log("EXPIRES_IN =", EXPIRES_IN);
+console.log("typeof =", typeof EXPIRES_IN);
   const token = jwt.sign(
     {
       id: user._id,
@@ -31,8 +37,10 @@ const loginUser = async (data) => {
     SECRET,
     {
       expiresIn: EXPIRES_IN,
-    },
+    }
   );
+
   return token;
 };
+
 module.exports = loginUser;
