@@ -1,26 +1,49 @@
-const { connectDB } = require("./db/db");
+require("dotenv").config();
+
 const express = require("express");
-const app = express();
 const cookieParser = require("cookie-parser");
+
+const { connectDB } = require("./db/db");
+
 const userRouter = require("./routes/userRouter");
 const complainRouter = require("./routes/complainRouter");
-const authMiddleare = require("./middleware/auth");
 const adminRouter = require("./routes/adminRouter");
-require("dotenv").config({ path: ".env.local" });
+const authMiddleware = require("./middleware/auth");
+
+const app = express();
 
 app.set("view engine", "ejs");
 app.set("views", "./views");
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static("./public"));
-connectDB();
 
 app.use("/user", userRouter);
-app.use("/complaint", authMiddleare, complainRouter);
+app.use("/complaint", authMiddleware, complainRouter);
 app.use("/admin", adminRouter);
-app.all("/{*splat}", (req, res) => res.redirect("/user"));
-const port = process.env.PORT;
-app.listen(port, () => {
-  console.log(`Hostel complaint server listening on port ${port}`);
+
+app.get("/", (req, res) => {
+    res.redirect("/user");
 });
+
+// Express 5 fallback
+app.use((req, res) => {
+    res.redirect("/user");
+});
+
+const PORT = process.env.PORT || 1080;
+
+(async () => {
+    try {
+        await connectDB();
+
+        app.listen(PORT, () => {
+            console.log(`🚀 Hostel Complaint Server running on http://localhost:${PORT}`);
+        });
+    } catch (err) {
+        console.error("❌ Failed to start server");
+        console.error(err);
+    }
+})();

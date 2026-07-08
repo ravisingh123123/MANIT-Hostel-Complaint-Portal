@@ -108,7 +108,7 @@ Make sure you have the following installed on your local machine:
    ```env
    MONGO_URI=your_mongodb_connection_string
    PORT=1080
-   JWT_SECERT=a_strong_and_long_random_secret_string
+   JWT_SECRET=a_strong_and_long_random_secret_string
    JWT_EXPIRESIN=1d
    ```
 
@@ -129,9 +129,6 @@ Make sure you have the following installed on your local machine:
 
 ## ⚙️ Architecture & Deployment
 
-- **Stateless Backend** – Designed for **horizontal scalability** in the future.
-- Hosted on **Azure Virtual Machine** with **Nginx reverse proxy**.
-- **Full TLS encryption** for secure data transfer.
 - MongoDB used as the primary database with **Mongoose ORM**.
 - Modular route and controller structure for maintainability.
 
